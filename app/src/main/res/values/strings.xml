@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">LDPQuiz</string>
+    <string name="score_text">Score</string>
+    <string name="initial_score">3</string>
+</resources>
