@@ -1,5 +1,7 @@
 package urjc.ldpquiz;
 
+import android.util.Log;
+
 import java.util.Vector;
 
 public class QuestionsAndAnswes {
@@ -65,11 +67,10 @@ public class QuestionsAndAnswes {
     }
 
     public boolean checkForAlreadySelectedQuestion(int i){
-        if(alreadySelectedQuestions.contains(i)){
-            return true;
-        }
-        else {
-            return false;
-        }
+        return alreadySelectedQuestions.contains(i)? true: false;
+    }
+
+    public boolean endOfGame(){
+        return alreadySelectedQuestions.size() == questions.length ? true : false;
     }
 }

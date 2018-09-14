@@ -32,14 +32,26 @@
             android:id="@+id/score"/>
 
     </RelativeLayout>
-    
+
     <TextView
+        android:id="@+id/step"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:gravity="center"
+        android:paddingBottom="10dp"
+        android:paddingTop="10dp"
+        android:text="0"
+        android:textSize="24sp"
+        android:visibility="visible" />
+
+    <TextView
+        android:id="@+id/question"
         android:layout_width="match_parent"
         android:layout_height="70dp"
-        android:textSize="20sp"
-        android:padding="8dp"
         android:layout_marginBottom="40dp"
-        android:id="@+id/question"/>
+        android:padding="8dp"
+        android:textSize="20sp" />
 
     <Button
         android:layout_width="match_parent"
