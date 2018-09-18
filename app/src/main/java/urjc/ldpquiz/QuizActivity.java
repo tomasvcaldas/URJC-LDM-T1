@@ -74,6 +74,7 @@ public class QuizActivity extends AppCompatActivity {
             if(questionsAndAnswes.endOfGame()){
                 Toast.makeText(QuizActivity.this,"End Of Game",Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(QuizActivity.this, EndGameActivity.class);
+                intent.putExtra("score", score);
                 startActivity(intent);
                 finish();
             }

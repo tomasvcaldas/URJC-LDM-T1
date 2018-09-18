@@ -16,7 +16,7 @@ public class MenuActivity extends AppCompatActivity {
     private Button mixGame;
 
     @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
+    protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.menu_quiz);
 
