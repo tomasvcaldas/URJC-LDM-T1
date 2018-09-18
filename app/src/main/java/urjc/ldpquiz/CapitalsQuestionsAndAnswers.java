@@ -1,10 +1,11 @@
 package urjc.ldpquiz;
 
+import android.graphics.drawable.Drawable;
 import android.util.Log;
 
 import java.util.Vector;
 
-public class QuestionsAndAnswes {
+public class CapitalsQuestionsAndAnswers {
 
     private String questions [] = {
             "What is the national capital of Portugal?",
@@ -29,33 +30,27 @@ public class QuestionsAndAnswes {
     private Vector<Integer> alreadySelectedQuestions = new Vector<>();
 
     public String getQuestion(int i){
-        String question = questions[i];
-        return question;
+        return questions[i];
     }
 
     public String getAnswer1(int i){
-        String answer1 = answers[i][0];
-        return answer1;
+        return answers[i][0];
     }
 
     public String getAnswer2(int i){
-        String answer2 = answers[i][1];
-        return answer2;
+        return answers[i][1];
     }
 
     public String getAnswer3(int i){
-        String answer3 = answers[i][2];
-        return answer3;
+        return answers[i][2];
     }
 
     public String getAnswer4(int i){
-        String answer4 = answers[i][3];
-        return answer4;
+        return answers[i][3];
     }
 
     public String getCorrectAnswer(int i){
-        String correctAnswer = correctAnswers[i];
-        return correctAnswer;
+        return correctAnswers[i];
     }
 
     public int getNumberOfQuestions(){

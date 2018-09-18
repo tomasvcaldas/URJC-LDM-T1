@@ -1,20 +1,18 @@
 package urjc.ldpquiz;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
 import java.util.Random;
 
 public class QuizActivity extends AppCompatActivity {
 
-    private QuestionsAndAnswes questionsAndAnswes = new QuestionsAndAnswes();
+    private CapitalsQuestionsAndAnswers questionsAndAnswes = new CapitalsQuestionsAndAnswers();
 
     private TextView scoreView;
     private TextView stepView;
@@ -73,8 +71,12 @@ public class QuizActivity extends AppCompatActivity {
             score++;
             updateScore(score);
 
-            if(questionsAndAnswes.endOfGame())
+            if(questionsAndAnswes.endOfGame()){
                 Toast.makeText(QuizActivity.this,"End Of Game",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(QuizActivity.this, EndGameActivity.class);
+                startActivity(intent);
+                finish();
+            }
             else updateQuestion();
 
         } else {
