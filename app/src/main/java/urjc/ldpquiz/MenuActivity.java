@@ -37,7 +37,12 @@ public class MenuActivity extends AppCompatActivity {
         flagsGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+
                 Log.d("myTag", "Play Flags Game");
+                Intent intent = new Intent(MenuActivity.this, FlagsActivity.class);
+                startActivity(intent);
+                finish();
+
             }
         });
 

@@ -8,17 +8,22 @@ public class FlagsQuestionsAndAnswers {
 
     private String question = "Which country has this flag?";
 
-    private Drawable flags [] = {};
+    private String flags [] = {"portugal_flag", "spain_flag"};
 
-    private String answers [][] = {};
+    private String answers [][] = {
+            {"Portugal", "Italy", "Spain", "Poland"},
+            {"France", "Italy", "Spain", "Australia"}
+    };
 
-    private String correctAnswers [] = {};
+    private String correctAnswers [] = {"Portugal", "Spain"};
 
     private Vector<Integer> alreadySelectedQuestions = new Vector<>();
 
-    public String getQuestion(int i){
+    public String getQuestion(){
         return question;
     }
+
+    public String getQuestionFlag(int i) { return flags[i]; }
 
     public String getAnswer1(int i){
         return answers[i][0];
