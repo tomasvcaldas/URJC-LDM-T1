@@ -12,7 +12,9 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class FlagsActivity extends AppCompatActivity {
+import java.util.Random;
+
+public class FlagsActivity extends AppCompatActivity{
 
     private FlagsQuestionsAndAnswers questionsAndAnswes = new FlagsQuestionsAndAnswers();
 
@@ -74,7 +76,8 @@ public class FlagsActivity extends AppCompatActivity {
     }
 
     private void updateQuestion(){
-        //generate random question (Question number)
+
+        generateRandomQuestionNumber();
 
         flag.setVisibility(ImageView.VISIBLE);
         final int resourceId = resources.getIdentifier(questionsAndAnswes.getQuestionFlag(questionNumber),
@@ -82,13 +85,14 @@ public class FlagsActivity extends AppCompatActivity {
 
         flag.setImageDrawable(resources.getDrawable(resourceId));
 
-        answer1.setText(questionsAndAnswes.getAnswer1(questionNumber));
-        answer2.setText(questionsAndAnswes.getAnswer2(questionNumber));
-        answer3.setText(questionsAndAnswes.getAnswer3(questionNumber));
-        answer4.setText(questionsAndAnswes.getAnswer4(questionNumber));
+        String[] answers = questionsAndAnswes.getSuffledAnswers(questionNumber);
+
+        answer1.setText(answers[0]);
+        answer2.setText(answers[1]);
+        answer3.setText(answers[2]);
+        answer4.setText(answers[3]);
         correctAnswer = questionsAndAnswes.getCorrectAnswer(questionNumber);
 
-        questionNumber++;
     }
 
     private void checkAnswer(Button answer){
@@ -116,5 +120,21 @@ public class FlagsActivity extends AppCompatActivity {
 
     private void updateScore(int score){
         scoreView.setText("" + score);
+    }
+
+    private void generateRandomQuestionNumber(){
+        Random r = new Random();
+        int low = 0;
+        int high = questionsAndAnswes.getNumberOfQuestions();
+        questionNumber = r.nextInt(high-low) + low;
+
+        // Verification to disable repeated questions
+        if (!questionsAndAnswes.checkForAlreadySelectedQuestion(questionNumber)){
+            questionsAndAnswes.addQuestionToSelectedOnes(questionNumber);
+            int newStep = Integer.parseInt(stepView.getText().toString()) + 1;
+            stepView.setText(Integer.toString(newStep));
+        } else {
+            generateRandomQuestionNumber();
+        }
     }
 }

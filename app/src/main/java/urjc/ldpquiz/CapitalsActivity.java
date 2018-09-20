@@ -1,8 +1,8 @@
 package urjc.ldpquiz;
 
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -10,7 +10,7 @@ import android.widget.Toast;
 
 import java.util.Random;
 
-public class QuizActivity extends AppCompatActivity {
+public class CapitalsActivity extends AppCompatActivity {
 
     private CapitalsQuestionsAndAnswers questionsAndAnswes = new CapitalsQuestionsAndAnswers();
 
@@ -40,7 +40,7 @@ public class QuizActivity extends AppCompatActivity {
         answer4 = (Button)findViewById(R.id.answer_4);
         stepView = (TextView) findViewById(R.id.step);
 
-       updateQuestion();
+        updateQuestion();
 
         // Answer Button clicks handler
         answer1.setOnClickListener(new View.OnClickListener(){
@@ -67,13 +67,13 @@ public class QuizActivity extends AppCompatActivity {
 
     private void checkAnswer(Button answer){
         if(answer.getText() == correctAnswer){
-            Toast.makeText(QuizActivity.this,"Correct Answer",Toast.LENGTH_SHORT).show();
+            Toast.makeText(CapitalsActivity.this,"Correct Answer",Toast.LENGTH_SHORT).show();
             score++;
             updateScore(score);
 
             if(questionsAndAnswes.endOfGame()){
-                Toast.makeText(QuizActivity.this,"End Of Game",Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(QuizActivity.this, EndGameActivity.class);
+                Toast.makeText(CapitalsActivity.this,"End Of Game",Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(CapitalsActivity.this, EndGameActivity.class);
                 intent.putExtra("score", score);
                 startActivity(intent);
                 finish();
@@ -81,7 +81,7 @@ public class QuizActivity extends AppCompatActivity {
             else updateQuestion();
 
         } else {
-            Toast.makeText(QuizActivity.this,"Wrong Answer",Toast.LENGTH_SHORT).show();
+            Toast.makeText(CapitalsActivity.this,"Wrong Answer",Toast.LENGTH_SHORT).show();
             score-=2;
             updateScore(score);
 
@@ -92,10 +92,13 @@ public class QuizActivity extends AppCompatActivity {
         generateRandomQuestionNumber();
 
         questionView.setText(questionsAndAnswes.getQuestion(questionNumber));
-        answer1.setText(questionsAndAnswes.getAnswer1(questionNumber));
-        answer2.setText(questionsAndAnswes.getAnswer2(questionNumber));
-        answer3.setText(questionsAndAnswes.getAnswer3(questionNumber));
-        answer4.setText(questionsAndAnswes.getAnswer4(questionNumber));
+
+        String[] answers = questionsAndAnswes.getSuffledAnswers(questionNumber);
+        answer1.setText(answers[0]);
+        answer2.setText(answers[1]);
+        answer3.setText(answers[2]);
+        answer4.setText(answers[3]);
+
         correctAnswer = questionsAndAnswes.getCorrectAnswer(questionNumber);
 
     }

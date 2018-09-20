@@ -1,21 +1,27 @@
 package urjc.ldpquiz;
 
 import android.graphics.drawable.Drawable;
+import android.util.Log;
 
+import java.util.Arrays;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
 import java.util.Vector;
 
 public class FlagsQuestionsAndAnswers {
 
     private String question = "Which country has this flag?";
 
-    private String flags [] = {"portugal_flag", "spain_flag"};
+    private String flags [] = {"portugal_flag", "spain_flag", "italy_flag"};
 
     private String answers [][] = {
             {"Portugal", "Italy", "Spain", "Poland"},
-            {"France", "Italy", "Spain", "Australia"}
+            {"France", "Italy", "Spain", "Australia"},
+            {"Peru", "Italy", "Spain", "Mexico"},
     };
 
-    private String correctAnswers [] = {"Portugal", "Spain"};
+    private String correctAnswers [] = {"Portugal", "Spain", "Italy"};
 
     private Vector<Integer> alreadySelectedQuestions = new Vector<>();
 
@@ -25,20 +31,10 @@ public class FlagsQuestionsAndAnswers {
 
     public String getQuestionFlag(int i) { return flags[i]; }
 
-    public String getAnswer1(int i){
-        return answers[i][0];
-    }
-
-    public String getAnswer2(int i){
-        return answers[i][1];
-    }
-
-    public String getAnswer3(int i){
-       return answers[i][2];
-    }
-
-    public String getAnswer4(int i){
-        return answers[i][3];
+    public String[] getSuffledAnswers(int i){
+        List<String> list = Arrays.asList(answers[i]);
+        Collections.shuffle(list);
+        return list.toArray(new String[0]);
     }
 
     public String getCorrectAnswer(int i){

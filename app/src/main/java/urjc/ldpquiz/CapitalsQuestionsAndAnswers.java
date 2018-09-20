@@ -3,6 +3,9 @@ package urjc.ldpquiz;
 import android.graphics.drawable.Drawable;
 import android.util.Log;
 
+import java.util.Arrays;
+import java.util.Collections;
+import java.util.List;
 import java.util.Vector;
 
 public class CapitalsQuestionsAndAnswers {
@@ -33,20 +36,10 @@ public class CapitalsQuestionsAndAnswers {
         return questions[i];
     }
 
-    public String getAnswer1(int i){
-        return answers[i][0];
-    }
-
-    public String getAnswer2(int i){
-        return answers[i][1];
-    }
-
-    public String getAnswer3(int i){
-        return answers[i][2];
-    }
-
-    public String getAnswer4(int i){
-        return answers[i][3];
+    public String[] getSuffledAnswers(int i){
+        List<String> list = Arrays.asList(answers[i]);
+        Collections.shuffle(list);
+        return list.toArray(new String[0]);
     }
 
     public String getCorrectAnswer(int i){

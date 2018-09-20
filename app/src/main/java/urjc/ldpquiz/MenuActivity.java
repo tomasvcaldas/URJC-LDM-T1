@@ -2,10 +2,8 @@ package urjc.ldpquiz;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.Menu;
 import android.view.View;
 import android.widget.Button;
 
@@ -28,7 +26,7 @@ public class MenuActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Log.d("myTag", "Play Capitals Game");
-                Intent intent = new Intent(MenuActivity.this, QuizActivity.class);
+                Intent intent = new Intent(MenuActivity.this, CapitalsActivity.class);
                 startActivity(intent);
                 finish();
             }
