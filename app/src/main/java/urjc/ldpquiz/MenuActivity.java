@@ -12,6 +12,7 @@ public class MenuActivity extends AppCompatActivity {
     private Button capitalsGame;
     private Button flagsGame;
     private Button mixGame;
+    private Button exitGame;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -21,11 +22,11 @@ public class MenuActivity extends AppCompatActivity {
         capitalsGame = (Button) findViewById(R.id.capitals);
         flagsGame = (Button) findViewById(R.id.flags);
         mixGame = (Button) findViewById(R.id.mix);
+        exitGame = (Button) findViewById(R.id.exit);
 
         capitalsGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("myTag", "Play Capitals Game");
                 Intent intent = new Intent(MenuActivity.this, CapitalsActivity.class);
                 startActivity(intent);
                 finish();
@@ -35,46 +36,26 @@ public class MenuActivity extends AppCompatActivity {
         flagsGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
-                Log.d("myTag", "Play Flags Game");
                 Intent intent = new Intent(MenuActivity.this, FlagsActivity.class);
                 startActivity(intent);
                 finish();
-
             }
         });
 
         mixGame.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Log.d("myTag", "Play Mix Game");
             }
         });
 
-    }
+        exitGame.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+                System.exit(0);
+            }
+        });
 
-    @Override
-    protected void onStart() {
-        super.onStart();
-    }
 
-    @Override
-    protected void onStop() {
-        super.onStop();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-    }
-
-    @Override
-    protected void onResume() {
-        super.onResume();
     }
 }
