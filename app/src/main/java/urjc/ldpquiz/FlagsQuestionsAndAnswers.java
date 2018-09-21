@@ -13,15 +13,20 @@ public class FlagsQuestionsAndAnswers {
 
     private String question = "Which country has this flag?";
 
-    private String flags [] = {"portugal_flag", "spain_flag", "italy_flag"};
+    private String flags [] = {"portugal_flag", "spain_flag", "italy_flag", "finland_flag", "france_flag", "greece_flag", "latvia_flag", "lithuania_flag"};
 
     private String answers [][] = {
             {"Portugal", "Italy", "Spain", "Poland"},
             {"France", "Italy", "Spain", "Australia"},
             {"Peru", "Italy", "Spain", "Mexico"},
+            {"Finland", "Sweden", "Norway", "Latvia"},
+            {"Italy", "France", "Greece", "Turkey"},
+            {"Greece", "France", "Italy", "Portugal"},
+            {"Latvia", "Austria", "Lithuania", "Poland"},
+            {"Lithuania", "Luxembourg", "Belgium", "Germany"},
     };
 
-    private String correctAnswers [] = {"Portugal", "Spain", "Italy"};
+    private String correctAnswers [] = {"Portugal", "Spain", "Italy", "Finland", "France", "Greece", "Latvia", "Lithuania"};
 
     private Vector<Integer> alreadySelectedQuestions = new Vector<>();
 
