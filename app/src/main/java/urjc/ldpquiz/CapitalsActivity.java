@@ -73,10 +73,7 @@ public class CapitalsActivity extends AppCompatActivity {
 
             if(questionsAndAnswes.endOfGame()){
                 Toast.makeText(CapitalsActivity.this,"End Of Game",Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(CapitalsActivity.this, EndGameActivity.class);
-                intent.putExtra("score", score);
-                startActivity(intent);
-                finish();
+                endGame();
             }
             else updateQuestion();
 
@@ -86,6 +83,13 @@ public class CapitalsActivity extends AppCompatActivity {
             updateScore(score);
 
         }
+    }
+
+    private void endGame(){
+        Intent intent = new Intent(CapitalsActivity.this, EndGameActivity.class);
+        intent.putExtra("score", score);
+        startActivity(intent);
+        finish();
     }
 
     private void updateQuestion(){
@@ -103,6 +107,8 @@ public class CapitalsActivity extends AppCompatActivity {
 
     }
     private void updateScore(int score){
+        if(score <= 0)
+            endGame();
         scoreView.setText("" + score);
     }
 

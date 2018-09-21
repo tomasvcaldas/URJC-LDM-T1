@@ -19,7 +19,12 @@ public class EndGameActivity extends AppCompatActivity {
         setContentView(R.layout.end_game);
 
         score = (TextView) findViewById(R.id.score);
-        score.setText(Integer.toString(getIntent().getIntExtra("score",0)));
+
+        int userScore = getIntent().getIntExtra("score",0);
+
+        if(userScore<=0)
+            score.setText("You lost");
+        else score.setText(Integer.toString(userScore));
 
         menu = (Button) findViewById(R.id.menu);
 

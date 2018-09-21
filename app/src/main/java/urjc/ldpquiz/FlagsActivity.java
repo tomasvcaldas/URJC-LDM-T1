@@ -103,10 +103,7 @@ public class FlagsActivity extends AppCompatActivity{
 
             if(questionsAndAnswes.endOfGame()){
                 Toast.makeText(FlagsActivity.this,"End Of Game",Toast.LENGTH_SHORT).show();
-                Intent intent = new Intent(FlagsActivity.this, EndGameActivity.class);
-                intent.putExtra("score", score);
-                startActivity(intent);
-                finish();
+                endGame();
             }
             else updateQuestion();
 
@@ -118,7 +115,16 @@ public class FlagsActivity extends AppCompatActivity{
         }
     }
 
+    private void endGame(){
+        Intent intent = new Intent(FlagsActivity.this, EndGameActivity.class);
+        intent.putExtra("score", score);
+        startActivity(intent);
+        finish();
+    }
+
     private void updateScore(int score){
+        if(score<=0)
+            endGame();
         scoreView.setText("" + score);
     }
 
