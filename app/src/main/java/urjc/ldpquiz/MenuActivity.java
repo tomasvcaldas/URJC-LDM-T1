@@ -43,9 +43,12 @@ public class MenuActivity extends AppCompatActivity {
         });
 
         mixGame.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-            }
+                @Override
+            public void onClick(View v){
+                    Intent intent = new Intent(MenuActivity.this, MixQuestionsActivity.class);
+                    startActivity(intent);
+                    finish();
+                }
         });
 
         exitGame.setOnClickListener(new View.OnClickListener() {
