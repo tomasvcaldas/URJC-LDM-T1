@@ -99,12 +99,23 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="@+id/linearLayout">
 
+        <ImageView
+            android:id="@+id/restart"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_weight="1.2"
+            android:paddingLeft="20dp"
+            android:paddingTop="10dp"
+            android:scaleType="fitStart"
+            android:src="@drawable/restart_icon" />
+
         <TextView
             android:id="@+id/textView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_weight="1"
             android:gravity="right"
+            android:paddingTop="10dp"
             android:text="Score:"
             android:textColor="@android:color/white"
             android:textSize="18dp"

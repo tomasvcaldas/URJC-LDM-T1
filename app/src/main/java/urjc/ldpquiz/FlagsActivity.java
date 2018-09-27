@@ -24,6 +24,7 @@ public class FlagsActivity extends AppCompatActivity{
     private Button answer3;
     private Button answer4;
     private ImageView flag;
+    private ImageView restartGame;
 
     private String correctAnswer;
     private int score = 3;
@@ -47,6 +48,9 @@ public class FlagsActivity extends AppCompatActivity{
         flag = (ImageView) findViewById(R.id.flagIcon);
         stepView = (TextView) findViewById(R.id.step);
         resources = this.getResources();
+        restartGame = (ImageView) findViewById(R.id.restart);
+
+        restartGame.setVisibility(View.INVISIBLE);
 
         updateQuestion();
 
@@ -70,6 +74,15 @@ public class FlagsActivity extends AppCompatActivity{
         answer4.setOnClickListener(new View.OnClickListener(){
             @Override
             public void onClick(View view){checkAnswer(answer4);}
+        });
+
+        restartGame.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent intent = new Intent(FlagsActivity.this, FlagsActivity.class);
+                startActivity(intent);
+                finish();
+            }
         });
     }
 
@@ -106,6 +119,7 @@ public class FlagsActivity extends AppCompatActivity{
             else updateQuestion();
 
         } else {
+            restartGame.setVisibility(View.VISIBLE);
             Toast.makeText(FlagsActivity.this,"Wrong Answer",Toast.LENGTH_SHORT).show();
             score-=2;
             updateScore(score);

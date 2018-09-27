@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import java.util.Arrays;
@@ -27,6 +28,7 @@ public class CountryFlagActivity extends AppCompatActivity {
     private int correctAnswerIndex;
     private int score = 3;
     private int questionNumber = 0;
+    private ImageView restartGame;
 
     private Resources resources;
 
@@ -43,6 +45,9 @@ public class CountryFlagActivity extends AppCompatActivity {
         answer3 = (Button)findViewById(R.id.answer_3);
         answer4 = (Button)findViewById(R.id.answer_4);
         stepView = (TextView) findViewById(R.id.step);
+        restartGame = (ImageView) findViewById(R.id.restart);
+
+        restartGame.setVisibility(View.INVISIBLE);
 
         resources = this.getResources();
 
@@ -69,6 +74,15 @@ public class CountryFlagActivity extends AppCompatActivity {
             public void onClick(View view){checkAnswer(3);}
         });
 
+        restartGame.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent intent = new Intent(CountryFlagActivity.this, CountryFlagActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
     }
 
     private void checkAnswer(int buttonIndex){
@@ -85,6 +99,7 @@ public class CountryFlagActivity extends AppCompatActivity {
             else updateQuestion();
 
         } else {
+            restartGame.setVisibility(View.VISIBLE);
             Toast.makeText(CountryFlagActivity.this,"Wrong Answer",Toast.LENGTH_SHORT).show();
             score-=2;
             updateScore(score);

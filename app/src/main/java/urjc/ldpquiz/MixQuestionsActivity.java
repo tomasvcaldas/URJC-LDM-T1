@@ -26,6 +26,7 @@ public class MixQuestionsActivity extends AppCompatActivity {
     private Button answer3;
     private Button answer4;
     private ImageView flag;
+    private ImageView restartGame;
 
     private String correctAnswer;
     private int score = 3;
@@ -47,6 +48,9 @@ public class MixQuestionsActivity extends AppCompatActivity {
         flag = (ImageView) findViewById(R.id.flagIcon);
         stepView = (TextView) findViewById(R.id.step);
         resources = this.getResources();
+        restartGame = (ImageView) findViewById(R.id.restart);
+
+        restartGame.setVisibility(View.INVISIBLE);
 
         updateQuestion();
 
@@ -71,6 +75,15 @@ public class MixQuestionsActivity extends AppCompatActivity {
             public void onClick(View view){checkAnswer(answer4);}
         });
 
+        restartGame.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent intent = new Intent(MixQuestionsActivity.this, MixQuestionsActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
 
     }
 
@@ -89,6 +102,7 @@ public class MixQuestionsActivity extends AppCompatActivity {
             }
 
         } else {
+            restartGame.setVisibility(View.VISIBLE);
             Toast.makeText(MixQuestionsActivity.this,"Wrong Answer",Toast.LENGTH_SHORT).show();
             score-=2;
             updateScore(score);

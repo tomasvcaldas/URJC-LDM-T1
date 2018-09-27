@@ -5,6 +5,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -21,6 +22,7 @@ public class CapitalsActivity extends AppCompatActivity {
     private Button answer2;
     private Button answer3;
     private Button answer4;
+    private ImageView restartGame;
 
     private String correctAnswer;
     private int score = 3;
@@ -39,6 +41,9 @@ public class CapitalsActivity extends AppCompatActivity {
         answer3 = (Button)findViewById(R.id.answer_3);
         answer4 = (Button)findViewById(R.id.answer_4);
         stepView = (TextView) findViewById(R.id.step);
+        restartGame = (ImageView) findViewById(R.id.restart);
+
+        restartGame.setVisibility(View.INVISIBLE);
 
         updateQuestion();
 
@@ -63,6 +68,15 @@ public class CapitalsActivity extends AppCompatActivity {
             public void onClick(View view){checkAnswer(answer4);}
         });
 
+        restartGame.setOnClickListener(new View.OnClickListener(){
+            @Override
+            public void onClick(View view){
+                Intent intent = new Intent(CapitalsActivity.this, CapitalsActivity.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
     }
 
     private void checkAnswer(Button answer){
@@ -78,6 +92,7 @@ public class CapitalsActivity extends AppCompatActivity {
             else updateQuestion();
 
         } else {
+            restartGame.setVisibility(View.VISIBLE);
             Toast.makeText(CapitalsActivity.this,"Wrong Answer",Toast.LENGTH_SHORT).show();
             score-=2;
             updateScore(score);
