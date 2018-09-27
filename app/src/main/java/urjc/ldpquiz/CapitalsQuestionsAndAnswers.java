@@ -1,8 +1,4 @@
 package urjc.ldpquiz;
-
-import android.graphics.drawable.Drawable;
-import android.util.Log;
-
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
@@ -45,7 +41,7 @@ public class CapitalsQuestionsAndAnswers {
         return questions[i];
     }
 
-    public String[] getSuffledAnswers(int i){
+    public String[] getShuffledAnswers(int i){
         List<String> list = Arrays.asList(answers[i]);
         Collections.shuffle(list);
         return list.toArray(new String[0]);

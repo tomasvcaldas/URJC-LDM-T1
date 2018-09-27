@@ -108,14 +108,14 @@ public class MixQuestionsActivity extends AppCompatActivity {
         if(currentQuestion % 2 == 0){
             generateRandomCapitalsQuestionNumber();
             questionView.setText(capitalsQuestionsAndAnswers.getQuestion(questionNumber));
-            answers = capitalsQuestionsAndAnswers.getSuffledAnswers(questionNumber);
+            answers = capitalsQuestionsAndAnswers.getShuffledAnswers(questionNumber);
             flag.setVisibility(ImageView.INVISIBLE);
             currentQuestion++;
             correctAnswer = capitalsQuestionsAndAnswers.getCorrectAnswer(questionNumber);
         } else {
             generateRandomFlagsQuestionNumber();
             questionView.setText(flagsQuestionsAndAnswers.getQuestion());
-            answers = flagsQuestionsAndAnswers.getSuffledAnswers(questionNumber);
+            answers = flagsQuestionsAndAnswers.getShuffledAnswers(questionNumber);
             flag.setVisibility(ImageView.VISIBLE);
             final int resourceId = resources.getIdentifier(flagsQuestionsAndAnswers.getQuestionFlag(questionNumber),
                     "mipmap", this.getPackageName());

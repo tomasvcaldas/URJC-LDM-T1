@@ -2,14 +2,13 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="fill_parent"
+    android:layout_height="match_parent"
     android:orientation="vertical">
 
     <Button
         android:id="@+id/capitals"
         android:layout_width="match_parent"
-        android:layout_height="114dp"
-        android:layout_weight="1"
+        android:layout_height="115dp"
         android:background="#C95D63"
         android:drawableRight="@drawable/go_icon"
         android:padding="10dp"
@@ -26,9 +25,8 @@
     <Button
         android:id="@+id/flags"
         android:layout_width="match_parent"
-        android:layout_height="114dp"
+        android:layout_height="115dp"
         android:layout_marginBottom="0dp"
-        android:layout_weight="1"
         android:background="#2B9EB3"
         android:drawableRight="@drawable/go_icon"
         android:padding="10dp"
@@ -45,8 +43,7 @@
     <Button
         android:id="@+id/flags2"
         android:layout_width="match_parent"
-        android:layout_height="114dp"
-        android:layout_weight="1"
+        android:layout_height="110dp"
         android:background="#F08700"
         android:drawableRight="@drawable/go_icon"
         android:padding="10dp"
@@ -63,10 +60,9 @@
     <Button
         android:id="@+id/mix"
         android:layout_width="match_parent"
-        android:layout_height="113dp"
+        android:layout_height="110dp"
         android:layout_marginBottom="0dp"
         android:layout_marginTop="0dp"
-        android:layout_weight="1"
         android:background="#21A179"
         android:drawableRight="@drawable/go_icon"
         android:padding="10dp"
@@ -83,8 +79,7 @@
     <Button
         android:id="@+id/exit"
         android:layout_width="match_parent"
-        android:layout_height="114dp"
-        android:layout_weight="1"
+        android:layout_height="115dp"
         android:background="#273c75"
         android:drawableRight="@drawable/go_icon"
         android:padding="10dp"

@@ -1,10 +1,6 @@
 package urjc.ldpquiz;
 
-import android.graphics.drawable.Drawable;
-import android.util.Log;
-
 import java.util.Arrays;
-import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
 import java.util.Vector;
@@ -36,7 +32,7 @@ public class FlagsQuestionsAndAnswers {
 
     public String getQuestionFlag(int i) { return flags[i]; }
 
-    public String[] getSuffledAnswers(int i){
+    public String[] getShuffledAnswers(int i){
         List<String> list = Arrays.asList(answers[i]);
         Collections.shuffle(list);
         return list.toArray(new String[0]);

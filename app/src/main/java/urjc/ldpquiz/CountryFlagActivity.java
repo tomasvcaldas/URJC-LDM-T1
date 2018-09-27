@@ -1,18 +1,19 @@
 package urjc.ldpquiz;
 
 import android.content.Intent;
+import android.content.res.Resources;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
-
+import java.util.Arrays;
 import java.util.Random;
 
-public class CapitalsActivity extends AppCompatActivity {
+public class CountryFlagActivity extends AppCompatActivity {
 
-    private CapitalsQuestionsAndAnswers questionsAndAnswes = new CapitalsQuestionsAndAnswers();
+    private CountryFlagQuestionsAndAnswers questionsAndAnswers= new CountryFlagQuestionsAndAnswers();
 
     private TextView scoreView;
     private TextView stepView;
@@ -23,8 +24,11 @@ public class CapitalsActivity extends AppCompatActivity {
     private Button answer4;
 
     private String correctAnswer;
+    private int correctAnswerIndex;
     private int score = 3;
     private int questionNumber = 0;
+
+    private Resources resources;
 
 
     @Override
@@ -34,51 +38,54 @@ public class CapitalsActivity extends AppCompatActivity {
 
         scoreView = (TextView)findViewById(R.id.score);
         questionView = (TextView)findViewById(R.id.question);
-        answer1 = (Button)findViewById(R.id.answer_1);
+        answer1 = (Button) findViewById(R.id.answer_1);
         answer2 = (Button)findViewById(R.id.answer_2);
         answer3 = (Button)findViewById(R.id.answer_3);
         answer4 = (Button)findViewById(R.id.answer_4);
         stepView = (TextView) findViewById(R.id.step);
+
+        resources = this.getResources();
 
         updateQuestion();
 
         // Answer Button clicks handler
         answer1.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View view){checkAnswer(answer1);}
+            public void onClick(View view){checkAnswer(0);}
         });
 
         answer2.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View view){checkAnswer(answer2);}
+            public void onClick(View view){checkAnswer(1);}
         });
 
         answer3.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View view){checkAnswer(answer3);}
+            public void onClick(View view){checkAnswer(2);}
         });
 
         answer4.setOnClickListener(new View.OnClickListener(){
             @Override
-            public void onClick(View view){checkAnswer(answer4);}
+            public void onClick(View view){checkAnswer(3);}
         });
 
     }
 
-    private void checkAnswer(Button answer){
-        if(answer.getText() == correctAnswer){
-            Toast.makeText(CapitalsActivity.this,"Correct Answer",Toast.LENGTH_SHORT).show();
+    private void checkAnswer(int buttonIndex){
+
+        if(buttonIndex == correctAnswerIndex){
+            Toast.makeText(CountryFlagActivity.this,"Correct Answer",Toast.LENGTH_SHORT).show();
             score++;
             updateScore(score);
 
-            if(questionsAndAnswes.endOfGame()){
-                Toast.makeText(CapitalsActivity.this,"End Of Game",Toast.LENGTH_SHORT).show();
+            if(questionsAndAnswers.endOfGame()){
+                Toast.makeText(CountryFlagActivity.this,"End Of Game",Toast.LENGTH_SHORT).show();
                 endGame();
             }
             else updateQuestion();
 
         } else {
-            Toast.makeText(CapitalsActivity.this,"Wrong Answer",Toast.LENGTH_SHORT).show();
+            Toast.makeText(CountryFlagActivity.this,"Wrong Answer",Toast.LENGTH_SHORT).show();
             score-=2;
             updateScore(score);
 
@@ -86,7 +93,7 @@ public class CapitalsActivity extends AppCompatActivity {
     }
 
     private void endGame(){
-        Intent intent = new Intent(CapitalsActivity.this, EndGameActivity.class);
+        Intent intent = new Intent(CountryFlagActivity.this, EndGameActivity.class);
         intent.putExtra("score", score);
         startActivity(intent);
         finish();
@@ -95,16 +102,24 @@ public class CapitalsActivity extends AppCompatActivity {
     private void updateQuestion(){
         generateRandomQuestionNumber();
 
-        questionView.setText(questionsAndAnswes.getQuestion(questionNumber));
+        questionView.setText(questionsAndAnswers.getQuestion(questionNumber));
 
-        String[] answers = questionsAndAnswes.getShuffledAnswers(questionNumber);
-        answer1.setText(answers[0]);
-        answer2.setText(answers[1]);
-        answer3.setText(answers[2]);
-        answer4.setText(answers[3]);
+        String[] answers = questionsAndAnswers.getShuffledAnswers(questionNumber);
 
-        correctAnswer = questionsAndAnswes.getCorrectAnswer(questionNumber);
+        answer1.setCompoundDrawablesWithIntrinsicBounds(null, resources.getDrawable(resources.getIdentifier(answers[0],
+                "mipmap", this.getPackageName())) , null, null);
 
+        answer2.setCompoundDrawablesWithIntrinsicBounds(null, resources.getDrawable(resources.getIdentifier(answers[1],
+                "mipmap", this.getPackageName())) , null, null);
+
+        answer3.setCompoundDrawablesWithIntrinsicBounds(null, resources.getDrawable(resources.getIdentifier(answers[2],
+                "mipmap", this.getPackageName())) , null, null);
+
+        answer4.setCompoundDrawablesWithIntrinsicBounds(null, resources.getDrawable(resources.getIdentifier(answers[3],
+                "mipmap", this.getPackageName())) , null, null);
+
+        correctAnswer = questionsAndAnswers.getCorrectAnswer(questionNumber);
+        correctAnswerIndex = Arrays.asList(answers).indexOf(correctAnswer);
     }
     private void updateScore(int score){
         if(score <= 0)
@@ -115,12 +130,12 @@ public class CapitalsActivity extends AppCompatActivity {
     private void generateRandomQuestionNumber(){
         Random r = new Random();
         int low = 0;
-        int high = questionsAndAnswes.getNumberOfQuestions();
+        int high = questionsAndAnswers.getNumberOfQuestions();
         questionNumber = r.nextInt(high-low) + low;
 
         // Verification to disable repeated questions
-        if (!questionsAndAnswes.checkForAlreadySelectedQuestion(questionNumber)){
-            questionsAndAnswes.addQuestionToSelectedOnes(questionNumber);
+        if (!questionsAndAnswers.checkForAlreadySelectedQuestion(questionNumber)){
+            questionsAndAnswers.addQuestionToSelectedOnes(questionNumber);
             int newStep = Integer.parseInt(stepView.getText().toString()) + 1;
             stepView.setText(Integer.toString(newStep));
         } else {
