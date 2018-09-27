@@ -77,7 +77,7 @@ public class MixQuestionsActivity extends AppCompatActivity {
     private void checkAnswer(Button answer){
         if(answer.getText() == correctAnswer){
             Toast.makeText(MixQuestionsActivity.this,"Correct Answer",Toast.LENGTH_SHORT).show();
-            score++;
+            score=score+3;
             updateScore(score);
 
             if(currentQuestion == 10){

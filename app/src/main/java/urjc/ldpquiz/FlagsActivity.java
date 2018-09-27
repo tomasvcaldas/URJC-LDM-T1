@@ -96,7 +96,7 @@ public class FlagsActivity extends AppCompatActivity{
     private void checkAnswer(Button answer){
         if(answer.getText() == correctAnswer){
             Toast.makeText(FlagsActivity.this,"Correct Answer",Toast.LENGTH_SHORT).show();
-            score++;
+            score=score+3;
             updateScore(score);
 
             if(questionsAndAnswes.endOfGame()){

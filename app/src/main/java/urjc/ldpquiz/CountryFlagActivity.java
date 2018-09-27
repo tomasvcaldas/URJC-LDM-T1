@@ -75,7 +75,7 @@ public class CountryFlagActivity extends AppCompatActivity {
 
         if(buttonIndex == correctAnswerIndex){
             Toast.makeText(CountryFlagActivity.this,"Correct Answer",Toast.LENGTH_SHORT).show();
-            score++;
+            score=score+3;
             updateScore(score);
 
             if(questionsAndAnswers.endOfGame()){

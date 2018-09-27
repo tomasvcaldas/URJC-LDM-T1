@@ -68,7 +68,7 @@ public class CapitalsActivity extends AppCompatActivity {
     private void checkAnswer(Button answer){
         if(answer.getText() == correctAnswer){
             Toast.makeText(CapitalsActivity.this,"Correct Answer",Toast.LENGTH_SHORT).show();
-            score++;
+            score=score+3;
             updateScore(score);
 
             if(questionsAndAnswes.endOfGame()){
